@@ -1,0 +1,31 @@
+﻿@model List<Contact>
+
+<h2>Résultats de la Recherche</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>@item.Email</td>
+                <td>@item.Numero</td>
+                <td>
+                    <a type="btn btn-success" asp-controller="Contact" asp-action="About" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">View</a>
+                    <a type="btn btn-success" asp-controller="Contact" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a type="btn btn-success" asp-controller="Contact" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger ">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
