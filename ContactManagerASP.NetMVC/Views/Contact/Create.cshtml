@@ -1,6 +1,6 @@
 ﻿@model Contact
 
-<form method="post" asp-action="Create">
+@* <form method="post" asp-action="Create">
     <div class="form-group">
         <label asp-for="Name">Name</label>
         <input asp-for="Name" class="form-control"  placeholder="Enter Name">
@@ -24,4 +24,33 @@
     
     <button type="submit" class="btn btn-primary float-right mt-3">Valider</button>
     <a type="btn btn-success" asp-controller="Contact" asp-action="IndexContact" class="btn btn-secondary float-right mt-3">Retour</a>
+</form> *@
+
+<h2>Créer un contact</h2>
+<form form method="post" asp-action="Create" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Name">Nom</label>
+        <input asp-for="Name" class="form-control" placeholder="Saisir nom">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Surname">Prénom</label>
+        <input asp-for="Surname" class="form-control" placeholder="Saisir prénom">
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="Saisir mail">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Numero">Numero</label>
+        <input asp-for="Numero" class="form-control" placeholder="Saisir numero">
+        <span asp-validation-for="Numero" class="text-danger"></span>
+    </div>
+    
+    <div class="col-12 ">
+        <button type="submit" class="btn btn-primary float-right mt-3">Valider</button>
+        <a type="btn btn-success" asp-controller="Contact" asp-action="IndexContact" class="btn btn-secondary float-right mt-3">Retour</a>
+    </div>
 </form>
