@@ -95,5 +95,24 @@ namespace ContactManagerASP.NetMVC.Controllers
             _contactRepository.Update(contact);
             return RedirectToAction("IndexContact");
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var contactDetail = await _contactRepository.GetByIdAsync(id);
+            if (contactDetail == null) return View("Error");
+            return View(contactDetail);
+        }
+
+        //ActionName ici c'est Delete et non DeleteContact pour que le boutton de confirmation cible cette action pour faire un post
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteContact(int id)
+        {
+            var contact = await _contactRepository.GetByIdAsync(id);
+            if (contact == null) return View("Error");
+
+            _contactRepository.Delete(contact);
+
+            return RedirectToAction("IndexContact");
+        }
     }   
 }

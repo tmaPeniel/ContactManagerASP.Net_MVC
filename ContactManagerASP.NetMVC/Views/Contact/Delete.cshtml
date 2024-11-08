@@ -1,8 +1,9 @@
-﻿@using ContactManagerASP.NetMVC.ViewModels
-@model EditContactViewModel
+﻿@model Contact
 
+<h1>Are you sure you want to delete this contact ?</h1>
 
-<form method="post" asp-action="Edit">
+<form method="post" asp-action="Delete" enctype="multipart/form-data">
+ 
     <div class="form-group">
         <label asp-for="Name">Name</label>
         <input asp-for="Name" class="form-control" placeholder="Name">
@@ -13,6 +14,7 @@
         <input asp-for="Surname" class="form-control" placeholder="Surname">
         <span asp-validation-for="Surname" class="text-danger"></span>
     </div>
+    
     <div class="form-group">
         <label asp-for="Email">Email</label>
         <input asp-for="Email" class="form-control" placeholder="Email">
@@ -23,7 +25,11 @@
         <input asp-for="Numero" class="form-control" placeholder="Numero">
         <span asp-validation-for="Numero" class="text-danger"></span>
     </div>
-
-    <button type="submit" class="btn btn-primary float-right mt-3">Valider</button>
-    <a type="btn btn-success" asp-controller="Contact" asp-action="IndexContact" class="btn btn-secondary float-right mt-3">Retour</a>
 </form>
+<div class="form-group">
+    <form action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Confirm" class="btn btn-danger float-right mt-3" />
+        <a type="btn btn-success" asp-controller="Contact" asp-action="IndexContact" class="btn btn-secondary float-right mt-3">Retour</a>
+    </form>
+</div>
