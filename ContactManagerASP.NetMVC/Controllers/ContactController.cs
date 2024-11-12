@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 using System.IO;
 using ContactManagerASP.NetMVC.Repository;
 using ContactManagerASP.NetMVC.Interfaces;
+using ContactManagerASP.NetMVC.ViewModels;
 
 namespace ContactManagerASP.NetMVC.Controllers
 {
     public class ContactController : Controller
     {
 
-        // En .Net 8 on utilise l'interface plutot que la classe
+        // En .Net 8 on passe par l'interface plutot que la classe
         //private readonly ContactRepository _contactRepository; (Non)
         private readonly IContactRepository _contactRepository;
 
@@ -53,8 +54,46 @@ namespace ContactManagerASP.NetMVC.Controllers
         }
         
 
+        /* Pour edit on recupere le contact par son ID, que l'on convertit en VM pour faire la modification*/
+        public async Task<IActionResult> Edit (int id)
+        {
+            var contact = await _contactRepository.GetByIdAsync(id);
+            if(contact==null) return View("Error");
+            var contactVM = new EditContactViewModel
+            {
+                Name = contact.Name,
+                Surname = contact.Surname,
+                Email = contact.Email,
+                Numero = contact.Numero
+            };
 
-    }
+            return View(contactVM);
+        }
 
-    
+        /* Pour valider la modification on fait un post avec lequel on récupere le viewModel et l'ID que l'on 
+         * convertit en Modele pour sauvegarder dans la bdd
+         */
+        [HttpPost]
+        public async Task<IActionResult>Edit(int id, EditContactViewModel contactVm)
+        {
+            if(!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit club");
+                return View("Edit", contactVm);
+            };
+
+            //On récupère le contact
+            var contact = new Contact
+            {
+                Id = id,
+                Name = contactVm.Name,
+                Surname = contactVm.Surname,
+                Email = contactVm.Email,
+                Numero = contactVm.Numero
+            };
+            
+            _contactRepository.Update(contact);
+            return RedirectToAction("IndexContact");
+        }
+    }   
 }
