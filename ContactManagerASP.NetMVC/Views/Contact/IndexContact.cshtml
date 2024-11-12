@@ -1,27 +1,22 @@
 ﻿@model List<Contact>
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
 
 
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">Mes contacts</h1>
-            <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <p class="lead text-body-secondary">Bienvenue sur votre gestionnaire de contact</p>
             <p>
-                <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+                <a type="btn btn-success" asp-controller="Contact" asp-action="Create" class="btn btn-primary my-2">Créer un contact</a>
+                <a href="#" class="btn btn-secondary my-2">Rechercher un contact</a>
             </p>
         </div>
     </div>
 </section>
 
 <div class="album py-5 bg-body-tertiary">
-    <div class="container">
-
+    <div class=" container">
+        <h2 class="fw-light py-4 text-center">Ma liste de contacts</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             @foreach (var item in Model)
             {
@@ -31,14 +26,14 @@
                         <div class="card-body">
                             <p class="card-text">@item.Name</p>
                             <p class="card-text">@item.Surname</p>
-                            <p class="card-text">@item.Id</p>
+                            <p class="card-text">@item.Numero</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a type="btn btn-success" asp-controller="Contact" asp-action="About" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">View</a>
                                     <a type="btn btn-success" asp-controller="Contact" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                    <a type="btn btn-success" asp-controller="Contact" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Delete</a>
                                 </div>
-                                <small class="text-body-secondary">@item.Numero</small>
+                                <small class="text-body-secondary">@item.Id</small>
                             </div>
                         </div>
                     </div>
