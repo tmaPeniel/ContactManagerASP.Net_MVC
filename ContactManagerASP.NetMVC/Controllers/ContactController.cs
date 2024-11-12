@@ -114,5 +114,21 @@ namespace ContactManagerASP.NetMVC.Controllers
 
             return RedirectToAction("IndexContact");
         }
+
+        public async Task<IActionResult> Search(string keyWord)
+        {
+            List<Contact> contactList;
+            if(string.IsNullOrEmpty(keyWord)) return View("Error");
+            if (keyWord.Contains('@'))
+            {
+                contactList = await _contactRepository.GetContactsByMail(keyWord);
+            }
+            else 
+            {
+                contactList = await _contactRepository.GetContactsByName(keyWord);                 
+            };
+
+            return View("Search", contactList);
+        }
     }   
 }

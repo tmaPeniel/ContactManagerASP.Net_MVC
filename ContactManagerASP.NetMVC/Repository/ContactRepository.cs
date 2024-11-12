@@ -42,7 +42,7 @@ namespace ContactManagerASP.NetMVC.Repository
         //Lorsque tu veux lister le resultat d'une recherche on utilise where, comme en sql
         public async Task<List<Contact>> GetContactsByMail(string mail)
         {
-           return await _context.Contacts.Where(x => x.Email == mail).ToListAsync();
+           return await _context.Contacts.Where(x => x.Email.Contains(mail)).ToListAsync();
         }
 
         public async Task<List<Contact>> GetContactsByName(string name)
