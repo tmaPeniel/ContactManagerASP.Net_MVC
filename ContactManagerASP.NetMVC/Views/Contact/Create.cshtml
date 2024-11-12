@@ -1,51 +1,30 @@
-﻿@model ContactManagerASP.NetMVC.Models.Contact
-
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-
-<h4>Contact</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Surname" class="control-label"></label>
-                <input asp-for="Surname" class="form-control" />
-                <span asp-validation-for="Surname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Numero" class="control-label"></label>
-                <input asp-for="Numero" class="form-control" />
-                <span asp-validation-for="Numero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+﻿@model Contact
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control"  placeholder="Enter Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-</div>
-
-<div>
-    <a asp-action="GetAllContact">Back to List</a>
-</div>
-
-</body>
-</html>
+    <div class="form-group">
+        <label asp-for="Surname">Name</label>
+        <input asp-for="Surname" class="form-control" placeholder="Enter Surname">
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="Enter Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Numero">Numero</label>
+        <input asp-for="Numero" class="form-control" placeholder="Enter Numero">
+        <span asp-validation-for="Numero" class="text-danger"></span>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

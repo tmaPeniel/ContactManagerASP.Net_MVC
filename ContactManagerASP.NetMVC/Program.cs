@@ -1,7 +1,19 @@
+using ContactManagerASP.NetMVC.Data;
+using ContactManagerASP.NetMVC.Interfaces;
+using ContactManagerASP.NetMVC.Repository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+
+//Permet d'ajouter notre DbContext comme un service de notre App
+builder.Services.AddDbContext<AppDbContext>(option=>option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
+
+
 
 var app = builder.Build();
 
