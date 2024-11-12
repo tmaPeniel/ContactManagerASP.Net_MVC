@@ -128,7 +128,7 @@ namespace ContactManagerASP.NetMVC.Controllers
                 contactList = await _contactRepository.GetContactsByName(keyWord);                 
             };
 
-            return View("Search", contactList);
+            return View("Search", contactList );
         }
     }   
 }
