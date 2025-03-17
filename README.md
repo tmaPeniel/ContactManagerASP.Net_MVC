@@ -27,5 +27,5 @@ Contact Manager est une application web développée en **ASP.NET Core MVC**, pe
 ### 📥 Clonage du projet
 
 ```sh
-git clone https://github.com/votre-repo/contact-manager.git
-cd contact-manager
+git clone https://github.com/tmaPeniel/ContactManagerASP.Net_MVC.git
+cd ContactManagerASP.Net_MVC
